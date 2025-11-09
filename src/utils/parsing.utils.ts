@@ -1,5 +1,5 @@
 import { SECTION_PATTERNS, FIELD_PATTERNS, ITEM_PATTERNS } from '../constants';
-import { 
+import type { 
     ParsedData, 
     EventItem, 
     Warning, 

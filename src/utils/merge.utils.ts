@@ -1,4 +1,4 @@
-import { ParsedData, StaffEvaluation } from '../types';
+import type { ParsedData, StaffEvaluation } from '../types';
 
 export const deduplicateByLink = <T extends { link: string }>(items: T[]): T[] => {
     return items.filter((item, index, self) => 

@@ -1,5 +1,5 @@
 import { generateReport, generateDocxReport } from '../utils';
-import { CityData } from '../types';
+import type { CityData } from '../types';
 
 export const useReportGeneration = () => {
     const copyReport = (

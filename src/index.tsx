@@ -14,12 +14,11 @@ import {
     useReportGeneration 
 } from './hooks';
 import { generateReport } from './utils';
-import { DEFAULT_ORGANIZATION } from './constants';
 
 const GSReportGenerator: React.FC = () => {
     // Базовая информация
     const [gsNickname, setGsNickname] = useState('');
-    const [organization, setOrganization] = useState(DEFAULT_ORGANIZATION);
+    const [organization, setOrganization] = useState('');
     const [dateFrom, setDateFrom] = useState('');
     const [dateTo, setDateTo] = useState('');
     const [generalInfo, setGeneralInfo] = useState('');
@@ -29,6 +28,7 @@ const GSReportGenerator: React.FC = () => {
     const {
         cities,
         setCities,
+        addCity,
         removeCity,
         updateCity,
         updateParsedData,
@@ -96,7 +96,7 @@ const GSReportGenerator: React.FC = () => {
     );
 
     return (
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="container space-y-6">
             {/* Заголовок */}
             <Header />
 
@@ -111,6 +111,17 @@ const GSReportGenerator: React.FC = () => {
                 onDateFromChange={setDateFrom}
                 onDateToChange={setDateTo}
             />
+
+            {/* Кнопка добавления города */}
+            <div className="section">
+                <button
+                    onClick={addCity}
+                    className="btn-blue"
+                    style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'}}
+                >
+                    ➕ Добавить город
+                </button>
+            </div>
 
             {/* Карточки городов */}
             {cities.map((city, cityIndex) => (
@@ -135,8 +146,8 @@ const GSReportGenerator: React.FC = () => {
             ))}
 
             {/* ГРП мероприятия */}
-            <div className="bg-gray-900/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-xl">
-                <h3 className="text-xl font-semibold text-white mb-4">
+            <div className="section">
+                <h3 className="section-title">
                     16. Мероприятия с ГРП (для всей организации)
                 </h3>
                 <textarea
@@ -144,13 +155,14 @@ const GSReportGenerator: React.FC = () => {
                     onChange={(e) => setGrpEvents(e.target.value)}
                     placeholder="Описание мероприятий при непосредственном участии администрации (ГРП) для всех городов..."
                     rows={4}
-                    className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                    className="form-input"
+                    style={{resize: 'vertical'}}
                 />
             </div>
 
             {/* Общее положение дел */}
-            <div className="bg-gray-900/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-xl">
-                <h3 className="text-xl font-semibold text-white mb-4">
+            <div className="section">
+                <h3 className="section-title">
                     17. Общее положение дел во фракции
                 </h3>
                 <textarea
@@ -158,7 +170,8 @@ const GSReportGenerator: React.FC = () => {
                     onChange={(e) => setGeneralInfo(e.target.value)}
                     placeholder="Изменения в работе фракции, стабильность, качество состава, трудности, планы..."
                     rows={4}
-                    className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                    className="form-input"
+                    style={{resize: 'vertical'}}
                 />
             </div>
 

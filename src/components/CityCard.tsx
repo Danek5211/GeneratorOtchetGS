@@ -1,6 +1,5 @@
 import React from 'react';
-import { CityData } from '../types';
-import { INPUT_CLASSES, BUTTON_CLASSES } from '../constants';
+import type { CityData } from '../types';
 import { LeaderReportInput } from './LeaderReportInput';
 import { ParsedDataDisplay } from './ParsedDataDisplay';
 import { AdditionalDataForm } from './AdditionalDataForm';
@@ -41,49 +40,47 @@ export const CityCard: React.FC<CityCardProps> = ({
     onItemChange
 }) => {
     return (
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-xl">
-            <div className="flex items-center justify-between mb-6">
+        <div className="city-card">
+            <div className="city-card-header">
                 <div>
-                    <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                        <span className="text-2xl">🏥</span>
+                    <h2 className="city-card-title">
+                        <span>🏥</span>
                         {city.name || `Город #${cityIndex + 1}`}
                     </h2>
-                    <p className="text-sm text-gray-300 mt-1">
+                    <p className="city-card-stats">
                         📋 Вставлено отчетов: {city.leaderReports.filter(r => r.trim()).length} | 
                         📊 Собеседований: {city.parsedData.interviews.length} | 
                         👥 Принято: {city.parsedData.totalHired} | 
                         ⚠️ Выговоров: {city.parsedData.warnings.length}
                     </p>
                 </div>
-                <div className="flex gap-2">
+                <div className="city-card-actions">
                     <button
                         onClick={() => onClearData(cityIndex)}
-                        className={BUTTON_CLASSES.secondary}
+                        className="btn-secondary"
                         title="Очистить все данные и начать заново"
                     >
                         🔄 Сброс
                     </button>
-                    {totalCities > 1 && (
-                        <button
-                            onClick={() => onRemoveCity(cityIndex)}
-                            className={BUTTON_CLASSES.secondary}
-                        >
-                            ✕ Удалить город
-                        </button>
-                    )}
+                    <button
+                        onClick={() => onRemoveCity(cityIndex)}
+                        className="btn-secondary"
+                    >
+                        ✕ Удалить город
+                    </button>
                 </div>
             </div>
 
             <div className="space-y-6">
                 {/* Название города */}
-                <div>
-                    <label className="block text-sm font-medium text-purple-200 mb-2">Название города</label>
+                <div className="form-group">
+                    <label className="form-label">Название города</label>
                     <input
                         type="text"
                         value={city.name}
                         onChange={(e) => onUpdateCity(cityIndex, 'name', e.target.value)}
-                        placeholder="ЦДБ-П"
-                        className={INPUT_CLASSES.base}
+                        placeholder="ЦГБ-П"
+                        className="form-input"
                     />
                 </div>
 

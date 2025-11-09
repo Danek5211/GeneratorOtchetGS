@@ -1,4 +1,4 @@
-import { ParsedData } from './report.types';
+import type { ParsedData } from './report.types';
 
 export interface CityData {
     name: string;

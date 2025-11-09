@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { CityData } from '../types';
+import type { CityData } from '../types';
 import { createEmptyParsedData } from '../utils';
-import { DEFAULT_CITY_NAMES } from '../constants';
 
 const createEmptyCity = (name: string = ''): CityData => ({
     name,
@@ -15,18 +14,13 @@ const createEmptyCity = (name: string = ''): CityData => ({
 });
 
 export const useCities = () => {
-    const [cities, setCities] = useState<CityData[]>([
-        createEmptyCity(DEFAULT_CITY_NAMES[0]),
-        createEmptyCity(DEFAULT_CITY_NAMES[1]),
-        createEmptyCity(DEFAULT_CITY_NAMES[2])
-    ]);
+    const [cities, setCities] = useState<CityData[]>([]);
 
-    // const addCity = () => {
-    //     setCities([...cities, createEmptyCity()]);
-    // };
+    const addCity = () => {
+        setCities([...cities, createEmptyCity()]);
+    };
 
     const removeCity = (index: number) => {
-        if (cities.length === 1) return;
         const newCities = [...cities];
         newCities.splice(index, 1);
         setCities(newCities);
@@ -60,7 +54,7 @@ export const useCities = () => {
     return {
         cities,
         setCities,
-        //addCity,
+        addCity,
         removeCity,
         updateCity,
         updateParsedData,

@@ -1,5 +1,4 @@
 import React from 'react';
-
 interface StatCardProps {
     label: string;
     value: number | string;
@@ -7,9 +6,9 @@ interface StatCardProps {
 
 export const StatCard: React.FC<StatCardProps> = ({ label, value }) => {
     return (
-        <div className="bg-white/5 rounded-lg p-3 border border-green-500/20">
-            <div className="text-xs text-purple-300">{label}</div>
-            <div className="text-xl font-bold text-white">{value}</div>
+        <div className="stat-card">
+            <div className="stat-label">{label}</div>
+            <div className="stat-value">{value}</div>
         </div>
     );
 };

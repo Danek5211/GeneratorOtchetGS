@@ -1,5 +1,5 @@
 import React from 'react';
-import { ItemType } from '../types';
+import type { ItemType } from '../types';
 import { INPUT_CLASSES, BUTTON_CLASSES } from '../constants';
 
 interface ListItemEditorProps {
@@ -35,9 +35,9 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({
     return (
         <div>
             {items.length > 0 ? (
-                <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
+                <div style={{maxHeight: '15rem', overflowY: 'auto', paddingRight: '0.5rem'}}>
                     {items.map((item, idx) => (
-                        <div key={idx} className="flex gap-2 items-center">
+                        <div key={idx} className="list-item">
                             {itemType === 'link' && (
                                 <input
                                     type="text"
@@ -85,7 +85,8 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({
                             )}
                             <button
                                 onClick={() => onRemove(cityIndex, field, idx)}
-                                className="px-2 py-2 bg-gray-800/70 text-gray-200 rounded-lg hover:bg-gray-700/70 transition-colors text-xs border border-gray-600/50 flex-shrink-0 hover:border-gray-500/50"
+                                className="btn-secondary"
+                                style={{flexShrink: 0, padding: '0.5rem'}}
                                 title="Удалить"
                             >
                                 ✕
@@ -94,7 +95,7 @@ export const ListItemEditor: React.FC<ListItemEditorProps> = ({
                     ))}
                 </div>
             ) : (
-                <p className="text-sm text-gray-400 py-2">Нет данных</p>
+                <p style={{fontSize: '0.875rem', color: 'rgb(156, 163, 175)', padding: '0.5rem 0'}}>Нет данных</p>
             )}
             <button
                 onClick={() => onAdd(cityIndex, field, getTemplate())}

@@ -1,6 +1,5 @@
 import React from 'react';
-import { CityData } from '../types';
-import { INPUT_CLASSES } from '../constants';
+import type { CityData } from '../types';
 
 interface AdditionalDataFormProps {
     city: CityData;
@@ -14,65 +13,68 @@ export const AdditionalDataForm: React.FC<AdditionalDataFormProps> = ({
     onUpdate
 }) => {
     return (
-        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4">
-            <h4 className="text-lg font-semibold text-yellow-300 mb-4">
+        <div className="section-yellow">
+            <h4 style={{fontSize: '1.125rem', fontWeight: 600, color: 'rgb(253, 224, 71)', marginBottom: '1rem'}}>
                 📝 Дополнительные данные (не из отчета лидера)
             </h4>
             
             <div className="space-y-4">
-                <div>
-                    <label className="block text-sm font-medium text-purple-200 mb-2">Назначение лидера</label>
+                <div className="form-group">
+                    <label className="form-label">Назначение лидера</label>
                     <textarea
                         value={city.leaderAppointment}
                         onChange={(e) => onUpdate(cityIndex, 'leaderAppointment', e.target.value)}
                         placeholder="Nick_Name - назначен на пост лидера... Дата"
                         rows={2}
-                        className="w-full px-4 py-2 bg-white/5 border border-yellow-500/30 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="form-input"
+                        style={{resize: 'vertical'}}
                     />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-purple-200 mb-2">Баны лидера</label>
+                <div className="grid md-grid-cols-2">
+                    <div className="form-group">
+                        <label className="form-label">Баны лидера</label>
                         <input
                             type="text"
                             value={city.leaderBans}
                             onChange={(e) => onUpdate(cityIndex, 'leaderBans', e.target.value)}
                             placeholder="-"
-                            className="w-full px-4 py-2 bg-white/5 border border-yellow-500/30 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                            className="form-input"
                         />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-purple-200 mb-2">Выговоры лидеру</label>
+                    <div className="form-group">
+                        <label className="form-label">Выговоры лидеру</label>
                         <input
                             type="text"
                             value={city.leaderWarnings}
                             onChange={(e) => onUpdate(cityIndex, 'leaderWarnings', e.target.value)}
                             placeholder="-"
-                            className="w-full px-4 py-2 bg-white/5 border border-yellow-500/30 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                            className="form-input"
                         />
                     </div>
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-purple-200 mb-2">Снятие лидера</label>
+                <div className="form-group">
+                    <label className="form-label">Снятие лидера</label>
                     <textarea
                         value={city.leaderRemoval}
                         onChange={(e) => onUpdate(cityIndex, 'leaderRemoval', e.target.value)}
                         placeholder="Nick_Name - снят по причине..."
                         rows={2}
-                        className="w-full px-4 py-2 bg-white/5 border border-yellow-500/30 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="form-input"
+                        style={{resize: 'vertical'}}
                     />
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-purple-200 mb-2">Оценка работы лидера</label>
+                <div className="form-group">
+                    <label className="form-label">Оценка работы лидера</label>
                     <textarea
                         value={city.leaderEvaluation}
                         onChange={(e) => onUpdate(cityIndex, 'leaderEvaluation', e.target.value)}
                         placeholder="Работает отлично, недостатков нет"
                         rows={2}
-                        className="w-full px-4 py-2 bg-white/5 border border-yellow-500/30 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="form-input"
+                        style={{resize: 'vertical'}}
                     />
                 </div>
             </div>

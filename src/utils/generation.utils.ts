@@ -1,4 +1,4 @@
-import { CityData } from '../types';
+import type { CityData } from '../types';
 
 // Функции для подсчета итогов
 export const calculateTotalInterviews = (cities: CityData[]): number => {

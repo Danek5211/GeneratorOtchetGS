@@ -1,6 +1,6 @@
 import { Document, Packer, Paragraph, TextRun, AlignmentType } from 'docx';
 import { saveAs } from 'file-saver';
-import { CityData } from '../types';
+import type { CityData } from '../types';
 import { calculateTotalInterviews } from './generation.utils';
 
 export const generateDocxReport = async (

@@ -1,8 +1,7 @@
 import React from 'react';
-import { ParsedData } from '../types';
+import type { ParsedData } from '../types';
 import { StatCard } from './StatCard';
 import { ListItemEditor } from './ListItemEditor';
-import { INPUT_CLASSES } from '../constants';
 
 interface ParsedDataDisplayProps {
     data: ParsedData;
@@ -22,14 +21,14 @@ export const ParsedDataDisplay: React.FC<ParsedDataDisplayProps> = ({
     onItemChange
 }) => {
     return (
-        <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
-            <h4 className="text-lg font-semibold text-green-300 mb-4">
+        <div className="section-green">
+            <h4 style={{fontSize: '1.125rem', fontWeight: 600, color: 'rgb(134, 239, 172)', marginBottom: '1rem'}}>
                 ✅ Автоматически извлеченные данные
             </h4>
             
             <div className="space-y-4">
                 {/* Основная статистика */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                <div className="grid md-grid-cols-4 mb-4">
                     <StatCard label="Принято всего" value={data.totalHired} />
                     <StatCard label="Принято с обзвона" value={data.callsAccepted} />
                     <StatCard label="Обзвонов проведено" value={data.callsPerWeek} />
@@ -37,46 +36,48 @@ export const ParsedDataDisplay: React.FC<ParsedDataDisplayProps> = ({
                 </div>
 
                 {/* Статистика увольнений */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4 p-3 bg-white/5 rounded-lg border border-green-500/20">
+                <div className="grid grid-cols-3 mb-4" style={{padding: '0.75rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '0.5rem', border: '1px solid rgba(34, 197, 94, 0.2)'}}>
                     <div>
-                        <h5 className="text-xs text-purple-300 mb-1">Уволено ПСЖ</h5>
-                        <div className="text-xl font-bold text-white">{data.firedPSJ}</div>
+                        <h5 className="stat-label">Уволено ПСЖ</h5>
+                        <div className="stat-value">{data.firedPSJ}</div>
                     </div>
                     <div>
-                        <h5 className="text-xs text-purple-300 mb-1">Уволено с ОЧС</h5>
-                        <div className="text-xl font-bold text-white">{data.firedOCS}</div>
+                        <h5 className="stat-label">Уволено с ОЧС</h5>
+                        <div className="stat-value">{data.firedOCS}</div>
                     </div>
                     <div>
-                        <h5 className="text-xs text-purple-300 mb-1">Всего уволено</h5>
-                        <div className="text-xl font-bold text-white">{data.firedPSJ + data.firedOCS}</div>
+                        <h5 className="stat-label">Всего уволено</h5>
+                        <div className="stat-value">{data.firedPSJ + data.firedOCS}</div>
                     </div>
                 </div>
 
                 {/* Состав сотрудников */}
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <div className="grid md-grid-cols-5">
                     {['firstRanks', 'middleStaff', 'seniorStaff', 'managementStaff', 'totalStaff'].map((field, idx) => (
-                        <div key={field} className="space-y-1">
-                            <label className="block text-xs text-purple-300">
+                        <div key={field} className="form-group">
+                            <label className="form-label" style={{fontSize: '0.75rem'}}>
                                 {['Младший', 'Средний', 'Старший', 'Руководящий', 'Всего'][idx]}
                             </label>
                             <input
                                 type="text"
                                 value={data[field as keyof ParsedData] as string}
                                 onChange={(e) => onUpdateField(cityIndex, field, e.target.value)}
-                                className="w-full px-3 py-2 bg-white/5 border border-green-500/30 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="form-input"
+                                style={{fontSize: '0.875rem', padding: '0.5rem 0.75rem'}}
                             />
                         </div>
                     ))}
                 </div>
 
                 {/* Кадровые перестановки */}
-                <div>
-                    <label className="block text-sm text-purple-300 mb-2">Кадровые перестановки</label>
+                <div className="form-group">
+                    <label className="form-label">Кадровые перестановки</label>
                     <textarea
                         value={data.staffChanges}
                         onChange={(e) => onUpdateField(cityIndex, 'staffChanges', e.target.value)}
                         rows={3}
-                        className="w-full px-3 py-2 bg-white/5 border border-green-500/30 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                        className="form-input"
+                        style={{fontSize: '0.875rem', resize: 'vertical'}}
                     />
                 </div>
 
@@ -90,7 +91,7 @@ export const ParsedDataDisplay: React.FC<ParsedDataDisplayProps> = ({
                     { field: 'warnings', label: '⚠️ Выговоры', type: 'warning' as const }
                 ].map(({ field, label, type }) => (
                     <div key={field}>
-                        <label className="block text-sm font-medium text-purple-300 mb-2">
+                        <label className="form-label">
                             {label} ({(data[field as keyof ParsedData] as any[]).length})
                         </label>
                         <ListItemEditor

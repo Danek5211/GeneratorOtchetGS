@@ -1,5 +1,5 @@
 import { parseLeaderReport, mergeData } from '../utils';
-import { CityData } from '../types';
+import type { CityData } from '../types';
 
 export const useLeaderReports = (
     cities: CityData[],

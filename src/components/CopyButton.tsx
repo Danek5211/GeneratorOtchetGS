@@ -1,6 +1,6 @@
 import React from 'react';
 import { BUTTON_CLASSES } from '../constants';
-import { CityData } from '../types';
+import type { CityData } from '../types';
 import { 
     calculateTotalInterviews, 
     calculateTotalHired, 
@@ -19,21 +19,21 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ cities, onCopy, onDownlo
     const totalWarnings = calculateTotalWarnings(cities);
 
     return (
-        <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-lg rounded-2xl p-6 border border-green-500/30 shadow-xl">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="section-blue">
+            <div className="flex items-center justify-between gap-4" style={{flexWrap: 'wrap'}}>
                 <div>
-                    <h3 className="text-xl font-semibold text-white mb-1">✅ Готово к копированию</h3>
-                    <p className="text-green-200">Полный отчет ГС по всем городам сформирован</p>
-                    <p className="text-sm text-green-300 mt-1">
+                    <h3 style={{fontSize: '1.25rem', fontWeight: 600, color: 'white', marginBottom: '0.25rem'}}>✅ Готово к копированию</h3>
+                    <p style={{color: 'rgb(167, 243, 208)'}}>Полный отчет ГС по всем городам сформирован</p>
+                    <p style={{fontSize: '0.875rem', color: 'rgb(134, 239, 172)', marginTop: '0.25rem'}}>
                         Всего собеседований: {totalInterviews} | 
                         Принято: {totalHired} | 
                         Выговоров: {totalWarnings}
                     </p>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex gap-2" style={{flexWrap: 'wrap'}}>
                     <button
                         onClick={onDownloadDocx}
-                        className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all font-semibold text-lg shadow-lg"
+                        className="btn-blue"
                     >
                         📥 Скачать .docx
                     </button>
