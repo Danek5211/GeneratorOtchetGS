@@ -129,7 +129,6 @@ const GSReportGenerator: React.FC = () => {
                     key={cityIndex}
                     city={city}
                     cityIndex={cityIndex}
-                    totalCities={cities.length}
                     onUpdateCity={updateCity}
                     onUpdateParsedData={updateParsedData}
                     onClearData={clearCityData}

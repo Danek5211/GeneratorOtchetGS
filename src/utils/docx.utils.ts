@@ -1,4 +1,5 @@
-import { Document, Packer, Paragraph, TextRun, AlignmentType } from 'docx';
+import { Document, Packer, Paragraph, TextRun } from 'docx';
+// @ts-ignore - file-saver types not installed
 import { saveAs } from 'file-saver';
 import type { CityData } from '../types';
 import { calculateTotalInterviews } from './generation.utils';

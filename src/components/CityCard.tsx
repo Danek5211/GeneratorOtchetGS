@@ -7,7 +7,6 @@ import { AdditionalDataForm } from './AdditionalDataForm';
 interface CityCardProps {
     city: CityData;
     cityIndex: number;
-    totalCities: number;
     onUpdateCity: (cityIndex: number, field: keyof CityData, value: any) => void;
     onUpdateParsedData: (cityIndex: number, field: string, value: any) => void;
     onClearData: (cityIndex: number) => void;
@@ -25,7 +24,6 @@ interface CityCardProps {
 export const CityCard: React.FC<CityCardProps> = ({
     city,
     cityIndex,
-    totalCities,
     onUpdateCity,
     onUpdateParsedData,
     onClearData,
